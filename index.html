@@ -1,1252 +1,311 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SMS - Sheriff Management System</title>
-
-  <!-- FORCE CUSTOM FAVICON -->
-  <link id="customFavicon" rel="icon" type="image/jpeg" href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAYACMDAREAAhEBAxEB/8QAGwAAAQQDAAAAAAAAAAAAAAAAAwQGBwgCCQr/xAArEAABBAEDAwMCBwAAAAAAAAADAQIEBQYHERIAEyEIFBUiMSQxQUBiY3H/xAAbAQABBQEBAAAAAAAAAAAAAAAABAIDBQYBBwD/xAArEQABBAECBAUEAwAAAAAAAAABAgMEEQUAIRIxQVEGE2FxgQcUIjJCkbH/2gAMAwEAAhEDEQA/AO7q7UaFjUEp6ykyHMZzZAobIGMVp5gmSpDSpGbOtnsZVwAkOxkd5iSCvEQ4XEAgnOK2coYUXlzymVw+nKQiBNY7nsg+wV9oCXz7SmtFzmdDkwVQhK3AohiOMJqWit6wxj58Z4z2evZbI9w6+xz7oR7hZ2YtXuEUaiaQpNpuYSjauTVASRjWyDrxqBc51JmRcezAOEZ5CSzYzXYN8teIxgJ2R48CIWbHDM4ybq3x2/lzZcaS6uhshYzAg2AmTb2eImv0Rpungaym5XBGYrwvVWyllHUQU8cxtqtjcpL6yWuT6hNSjksaNZZ7O7Y9/JWVoZ2aCCBdTq5rHKastWkYXUydMUDbYdgaWk0yWZOrTuZzCJrNsjTagLGUyeDzNi05T5pVQq4GnWtrG3l7a54rNXfkLU1UbTzUiuR7UEOXMxt44c9akNL3nY5IYIIUCeeylAqrK0NAgxUqzmb4Ul145FEuaVVVrhYjU+lnTKajn1l5dMWUBbbcAd0zya5iIypbSKq7DUFambmYqfKy7j+o5XL7aDdF64pTDsgitZs4Mgq2yxx8YZtF5tWqrVuNvWVY+7fZUqWg0Nb3lRZmgY6juchc5ry4qkURH8Bik5FUk5y/dGqADJERSq3z2x2RE/nh6lC1iJEct3TEdiNeOt9iP1mCYS3cYn23KsM9vYxv4tIZTNFMEzAenWZcRW7MY/1c/oPaULq0nMRM8BunHt975zDiHIe9jXPiSQvVPqE/sOcxfzargnKJ37KwjkVNl338JHEsYKYFqziJ9iHuRBR+E7GsCj94IYmJ3j3+fibW8jASKu9RTG8rKFEQz+kkprFz/IGUTH4+IqyJtWfNlBmhkHQNqRPoRzDmj1BZqk2nqYg3jEsxjfDGGe3cXDb9NHZL+YBHTPNecdmG84OUXjuhiulOKt9EqWrcxksB0qy+syvSGtmZq9StUsW7V1QP9KrmLSy+jhpkqJmaQNJeHm8rTEN00Enl5yLByp11g7IKrcP8AEhIGJMGsU/fJUTHc5b/t2rnqTWjv8hwTG6S3tK3Hp+pCQMZuoxiqWullpFLNkU5jkaUgYE9kI0dGEQbnc+JEI5Xr48TpmhrbqRhOn3SXWOscf5cbfmWx+K6D6vVkMhcHT+ZsaDN+tj6e5TMP8ApC/pjA6pHDuxfCwdMikir2Yt2XWGU7qSTHRpRV/jUz9o2KyRoha3D+em5618QG2IRElERBT8QzxgRiKe+snIcxk1OcVmfwR1+S4zpdj1NYTwl7VRlMcOrGOSIeUVW6DY2LaxpjWSQo38LYsmR1GJUdGHoN0mvdS8/wCaejhurmHTj9faR6HZHSWWy2PKJweuEVNZ07+O1xgAgFQulnKVxM3KkLGKOWReqSmtIekr+B/NflbgdPdWpyQ+ns0cNg1sPuQtFwI1fiSC4iZmI7bgbwOPyN7ofPcIW5gPVnTPUv0e6IZ8Wyy3C6v1E4JkmkmrByIhrLE30tnXF09yxEV+2UYyWyi/HFWQ9LGgYxRNIOKnt9numWIx79G9TsrWsqm5V6f5enexhxM2Fl3a7kZJETM71TWhiGltsp/GJkZYMSI9V/WLojX3lt6WawK7qLS9DrXpHOdOuobD4nc08eNu0W6N1HAyURn8I7IImkyXEN3EQJLFgIiEbnm/ZP6T/OgEXzn+Z/vxqCPyj+I/rwMwASGduQERx7ovbMNhWbp9l4vRzd03XZdt036icvg8NqCpOPzuJxmZoEwGlSy1CnkqhNCJgGTWupeiWBBFAnw5DEzETG/hVbWpLmpjFHtMc1mQFtPzjkMxO0/jG/v4wdEiu7HKNHd7V3ONyAF3t37bcgcmKoXbeOQuC7eN+ul4XEKVj0KxeOWnEzBYtK6NQFY2RHgM0FimApTA/DE1RVMR7R7eEz+1Lmz7Q+XLmfxly/65FvPL999/38Am1VZZNVthXQJzXD7StmwostFF3WG7apIEVFGpRjLwVOHcYwnHm1HI99Oj1AWuyr1K1Gldjth31pYQmxQO49wFmYARrEoAiASIZIYmGtqlTugS7lWtaWQwJLsoS8CGDE4EgaBjMQYCcRMbQQwW3KImDHhxJSR0kxY0hIkgUqKh44TJGkgRzQyI6EY5AHC172iMLgUaPcjHNRy7uluarudpjF91ZKZwMw7ij25rPjMc1ltHIC3Eto3ido8dNqVX9jv10O9M5div3UrZ2LCoIVPTBiUKcuCKFtXxYEEUAQwU7qek/Djx/9k=">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
-
-  <!-- DataTables -->
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"/>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-
-  <!-- DataTables Buttons -->
-  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css"/>
-  <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-
-  <!-- XLSX -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title>OFFICES OF NAWNIT NIHAL</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    :root{
-      --primary:#071a3a;
-      --primary2:#0b2d66;
-      --primary-light:#11408f;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-      --secondary:#1fbf6b;
-      --warning:#f39c12;
-      --danger:#e74c3c;
-
-      --gray:#5f6b7a;
-      --gray-light:#b7c2cf;
-
-      --light:#eef4ff;
-      --border:#cfe0ff;
-
-      --shadow:rgba(0,0,0,0.08);
-      --shadow2:rgba(0,0,0,0.18);
-
-      --text-dark:#1f2a3a;
-      --text-light:#ffffff;
-
-      --bg:linear-gradient(135deg,#eef4ff 0%,#d3e4ff 100%);
+    body {
+      margin: 0;
+      background: black;
+      color: #33ff96;
+      font-family: 'Courier New', monospace;
+      overflow-x: hidden;
+      overflow-y: auto;
     }
 
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;}
-    body{background:var(--bg);min-height:100vh;padding:20px;}
-    .hidden{display:none!important;}
-
-    /* LOGIN */
-    .login-container{
-      max-width:520px;margin:40px auto;border-radius:18px;overflow:hidden;
-      box-shadow:0 18px 55px rgba(0,0,0,0.22);
-      border:1px solid rgba(255,255,255,0.25);background:#fff;
-    }
-    .login-header{
-      padding:22px 22px 18px;
-      background:linear-gradient(135deg,var(--primary) 0%,var(--primary2) 100%);
-      color:#fff;border-bottom:3px solid var(--secondary);
-    }
-    .login-header h1{font-size:22px;font-weight:900;display:flex;gap:12px;align-items:center;}
-    .login-header p{margin-top:10px;font-weight:700;opacity:.8;font-size:12px;letter-spacing:.2px;}
-    .login-body{padding:18px 22px 22px;}
-    .login-grid{display:grid;gap:12px;margin-top:10px;}
-    .login-field label{font-size:12px;font-weight:900;color:var(--primary2);display:block;margin-bottom:6px;}
-    .login-field input{
-      width:100%;padding:12px 12px;border-radius:14px;border:1px solid var(--border);
-      font-weight:900;outline:none;
-    }
-    .login-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
-    .login-btn{
-      border:none;border-radius:14px;padding:12px 16px;font-weight:900;cursor:pointer;
-      display:inline-flex;align-items:center;gap:10px;transition:.25s;
-    }
-    .login-btn.primary{background:linear-gradient(135deg,var(--secondary) 0%,#2ecc71 100%);color:#fff;}
-    .login-btn.dark{background:linear-gradient(135deg,var(--primary2) 0%,var(--primary-light) 100%);color:#fff;}
-    .login-btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,0.14);}
-    .login-note{margin-top:14px;font-size:12px;font-weight:800;color:var(--gray);line-height:1.45;}
-
-    /* MAIN */
-    .container{
-      max-width:1400px;margin:0 auto;background:white;border-radius:16px;
-      box-shadow:0 15px 40px var(--shadow2);overflow:hidden;border:1px solid rgba(255,255,255,0.2);
-    }
-
-    .header{
-      background:linear-gradient(135deg,var(--primary) 0%,var(--primary2) 100%);
-      color:white;padding:22px 30px;display:flex;justify-content:space-between;align-items:center;
-      flex-wrap:wrap;gap:12px;border-bottom:3px solid var(--secondary);
-    }
-    .branding{display:flex;flex-direction:column;}
-    .header h1{font-size:24px;font-weight:800;display:flex;align-items:center;gap:12px;letter-spacing:.3px;margin-bottom:4px;}
-    .header h1 i{color:var(--warning);font-size:26px;}
-    .subtext{font-size:12px;color:rgba(255,255,255,0.7);font-style:italic;letter-spacing:.5px;margin-left:38px;}
-
-    .top-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:flex-end;}
-    .user-pill{
-      background:rgba(255,255,255,0.15);padding:10px 16px;border-radius:25px;font-size:13px;
-      display:flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,0.2);
-      font-weight:900;backdrop-filter:blur(5px);white-space:nowrap;
-    }
-    .logout-btn{
-      background:#ff5c5c;color:white;border:none;border-radius:12px;padding:10px 16px;
-      font-weight:900;cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:.3s ease;
-    }
-    .logout-btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(231,76,60,0.3);}
-    .system-status{
-      background:rgba(255,255,255,0.15);padding:10px 18px;border-radius:25px;font-size:14px;
-      display:flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,0.2);
-      font-weight:800;backdrop-filter:blur(5px);white-space:nowrap;
-    }
-
-    /* 🔴 LOCK WARNING */
-    .lock-pill{
-      background:rgba(231,76,60,0.14);
-      border:1px solid rgba(231,76,60,0.40);
-      color:var(--danger);
-      padding:10px 14px;
-      border-radius:999px;
-      font-weight:900;
-      display:flex;align-items:center;gap:10px;
-      white-space:nowrap;
-    }
-
-    .tabs{
-      display:flex;background:linear-gradient(to right,#f2f7ff,#e6f0ff);
-      border-bottom:1px solid var(--border);overflow-x:auto;padding:0 8px;
-    }
-    .tab{
-      padding:16px 26px;border:none;cursor:pointer;background:none;color:var(--text-dark);font-weight:900;
-      position:relative;white-space:nowrap;transition:all .3s ease;display:inline-flex;align-items:center;gap:12px;
-      font-size:15px;margin:0 2px;
-    }
-    .tab:hover{background:rgba(255,255,255,0.9);color:var(--primary2);transform:translateY(-1px);}
-    .tab.active{
-      background:white;color:var(--secondary);box-shadow:0 -3px 10px rgba(0,0,0,0.05);
-    }
-    .tab.active::after{
-      content:'';position:absolute;bottom:-1px;left:10px;right:10px;height:4px;background:var(--secondary);
-      border-radius:2px 2px 0 0;
-    }
-
-    .content{padding:26px 30px 30px;}
-
-    .dashboard-cards{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:22px;margin-bottom:22px;
-    }
-    .card{
-      background:white;border-radius:14px;padding:22px;box-shadow:0 7px 20px var(--shadow);
-      border-left:6px solid var(--secondary);transition:all .3s ease;border:1px solid rgba(0,0,0,0.05);
-      min-height:140px;position:relative;overflow:hidden;
-    }
-    .card:hover{transform:translateY(-4px);box-shadow:0 12px 25px rgba(0,0,0,0.12);}
-    .card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:10px;}
-    .card-title{font-size:13px;color:var(--primary2);font-weight:900;letter-spacing:.3px;text-transform:uppercase;}
-    .card-value{font-size:32px;font-weight:900;color:var(--primary);margin:10px 0 5px;letter-spacing:.5px;line-height:1.2;word-break:break-word;}
-    .card-sub{font-size:13px;color:var(--gray);font-weight:800;}
-
-    .panel{
-      background:#fff;border-radius:14px;border:1px dashed var(--border);
-      padding:18px;box-shadow:0 8px 22px var(--shadow);
-    }
-    .panel-title{font-weight:900;color:var(--primary2);display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:16px;}
-    .panel-sub{color:var(--gray);font-weight:800;margin-bottom:14px;}
-
-    .action-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px;}
-    .action-btn{
-      border:none;border-radius:12px;padding:12px 18px;font-size:14px;font-weight:900;cursor:pointer;
-      display:inline-flex;align-items:center;gap:12px;transition:.3s ease;letter-spacing:.3px;user-select:none;
-    }
-    .action-green{background:linear-gradient(135deg,var(--secondary) 0%,#2ecc71 100%);color:white;}
-    .action-dark{background:linear-gradient(135deg,var(--primary2) 0%,var(--primary-light) 100%);color:white;}
-    .action-red{background:linear-gradient(135deg,#ff5c5c 0%,#e74c3c 100%);color:white;}
-    .action-btn:hover{transform:translateY(-3px);box-shadow:0 12px 22px rgba(0,0,0,0.12);}
-    .action-btn:disabled{opacity:.55;cursor:not-allowed;filter:grayscale(.2);}
-
-    .external-box{
-      margin-top:14px;background:#f5f9ff;border-radius:14px;border:1px solid var(--border);
-      padding:16px;min-height:240px;display:flex;align-items:center;justify-content:center;color:var(--gray);font-weight:900;
-    }
-    .open-link{
-      padding:12px 18px;border-radius:12px;border:none;cursor:pointer;font-weight:900;color:white;
-      background:linear-gradient(135deg,var(--primary2) 0%,var(--primary-light) 100%);
-      display:inline-flex;gap:10px;align-items:center;transition:.3s ease;
-    }
-    .open-link:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(19,58,102,0.3);}
-
-    /* MODALS */
-    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;padding:14px;z-index:999;}
-    .modal{width:min(1100px,96vw);max-height:88vh;overflow:auto;background:white;border-radius:16px;box-shadow:0 20px 55px rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.2);transition:width 0.25s ease, height 0.25s ease, max-height 0.25s ease;}
-    .modal.fullscreen{width:100vw;height:100vh;max-height:100vh;border-radius:0;}
-    .modal-header{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;background:linear-gradient(135deg,var(--primary) 0%,var(--primary2) 100%);color:white;border-bottom:3px solid var(--secondary);}
-    .modal-title{font-weight:900;display:flex;gap:10px;align-items:center;}
-    .modal-header-actions{display:flex;gap:8px;}
-    .modal-maximize,.modal-close{border:none;background:rgba(255,255,255,.15);color:white;border-radius:12px;padding:8px 12px;cursor:pointer;font-weight:900;transition:background 0.2s;}
-    .modal-maximize:hover,.modal-close:hover{background:rgba(255,255,255,.3);}
-    .modal-body{padding:16px 18px 20px;max-height:60vh;overflow-y:auto;}
-    .modal.fullscreen .modal-body{max-height:calc(100vh - 120px);}
-    .grid{display:grid;gap:12px;}
-    .grid.cols2{grid-template-columns:1fr 1fr;}
-    .field label{font-size:12px;font-weight:900;color:var(--primary2);display:block;margin-bottom:6px;}
-    .field input,.field select,.field textarea{width:100%;padding:11px 12px;border-radius:12px;border:1px solid var(--border);font-weight:900;}
-    .field textarea{min-height:72px;resize:vertical;}
-    .modal-actions{display:flex;gap:10px;flex-wrap:wrap;padding:14px 18px;border-top:1px solid var(--border);background:#f5f9ff;justify-content:flex-end;}
-    .btn{border:none;border-radius:12px;padding:11px 14px;font-weight:900;cursor:pointer;display:inline-flex;align-items:center;gap:10px;}
-    .btn.primary{background:linear-gradient(135deg,var(--secondary) 0%,#2ecc71 100%);color:white;}
-    .btn.dark{background:linear-gradient(135deg,var(--primary2) 0%,var(--primary-light) 100%);color:white;}
-    .btn.danger{background:linear-gradient(135deg,#ff5c5c 0%,#e74c3c 100%);color:white;}
-    .btn:disabled{opacity:.55;cursor:not-allowed;}
-
-    .pill{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:999px;border:1px solid var(--border);background:#fff;font-weight:900;font-size:12px;}
-    .pill.green{border-color:rgba(31,191,107,.35);color:var(--secondary);}
-    .pill.red{border-color:rgba(231,76,60,.35);color:var(--danger);font-weight:900;}
-    .pill.yellow{border-color:rgba(243,156,18,.35);color:var(--warning);}
-
-    table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:14px;border:1px solid var(--border);}
-    thead th{background:var(--primary);color:white;text-align:left;padding:12px 12px;font-weight:900;font-size:12px;position:sticky;top:0;z-index:2;}
-    tbody td{padding:10px 12px;border-bottom:1px solid var(--border);font-weight:900;font-size:12px;vertical-align:top;}
-    tbody tr:hover td{background:#f4f9ff;}
-    .td-input{width:110px;}
-    .tiny{font-size:11px;color:var(--gray);font-weight:900;}
-
-    .block{border:1px dashed var(--border);border-radius:16px;padding:12px;margin:14px 0;background:#fff;box-shadow:0 8px 18px rgba(0,0,0,0.06);}
-    .block-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap;margin-bottom:10px;}
-    .block-title{font-weight:900;color:var(--primary2);}
-    .block-sub{font-weight:900;color:var(--gray);font-size:12px;}
-
-    /* TOAST */
-    .toast-wrap{
-      position:fixed;right:18px;bottom:18px;z-index:2000;
-      display:flex;flex-direction:column;gap:10px;max-width:380px;
-    }
-    .toast{
-      background:white;border:1px solid var(--border);border-left:7px solid var(--secondary);
-      border-radius:14px;padding:12px 12px;box-shadow:0 18px 45px rgba(0,0,0,0.15);
-      display:flex;gap:10px;align-items:flex-start;
-      animation:pop .18s ease-out;
-    }
-    .toast i{margin-top:2px;color:var(--secondary);}
-    .toast .t1{font-weight:900;color:var(--primary2);font-size:13px;}
-    .toast .t2{font-weight:900;color:var(--gray);font-size:12px;margin-top:3px;line-height:1.4;}
-    .toast.danger{border-left-color:var(--danger);}
-    .toast.danger i{color:var(--danger);}
-    .toast.warn{border-left-color:var(--warning);}
-    .toast.warn i{color:var(--warning);}
-
-    @keyframes pop{
-      from{opacity:0;transform:translateY(8px);}
-      to{opacity:1;transform:translateY(0);}
-    }
-
-    /* DIALOG */
-    .dlg-backdrop{
-      position:fixed;inset:0;background:rgba(0,0,0,0.45);
-      display:none;align-items:center;justify-content:center;
-      z-index:3000;padding:14px;
-    }
-    .dlg{
-      width:min(560px,94vw);background:#fff;border-radius:18px;
-      border:1px solid rgba(255,255,255,0.35);
-      box-shadow:0 30px 80px rgba(0,0,0,0.28);overflow:hidden;
-    }
-    .dlg-head{
-      background:linear-gradient(135deg,var(--primary) 0%,var(--primary2) 100%);
-      color:#fff;padding:14px 16px;border-bottom:3px solid var(--secondary);
-      display:flex;align-items:center;justify-content:space-between;gap:10px;
-    }
-    .dlg-title{font-weight:900;display:flex;gap:10px;align-items:center;}
-    .dlg-body{padding:14px 16px;}
-    .dlg-msg{font-weight:900;color:var(--text-dark);line-height:1.5;font-size:13px;white-space:pre-line;}
-    .dlg-actions{
-      padding:12px 16px;background:#f5f9ff;border-top:1px solid var(--border);
-      display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;
-    }
-    .dlg-x{border:none;border-radius:12px;background:rgba(255,255,255,0.15);color:#fff;padding:8px 12px;font-weight:900;cursor:pointer;}
-
-    /* DataTables */
-    .dataTables_wrapper {margin-top: 15px;}
-    .dataTables_filter input {border: 1px solid var(--border)!important; border-radius: 8px!important; padding: 8px 12px!important;}
-    .dataTables_length select {border: 1px solid var(--border)!important; border-radius: 8px!important; padding: 4px 8px!important;}
-    .dataTables_paginate .paginate_button {border: 1px solid var(--border)!important; border-radius: 8px!important; margin: 0 2px!important;}
-    .dataTables_paginate .paginate_button.current {background: var(--primary)!important; color: white!important;}
-
-    /* Spinner */
-    .spinner {border: 3px solid var(--border);border-top: 3px solid var(--secondary);border-radius: 50%;width: 30px;height: 30px;animation: spin 1s linear infinite;display:inline-block;vertical-align:middle;}
-    @keyframes spin {0% { transform: rotate(0deg); }100% { transform: rotate(360deg); }}
-
-    /* Loading Overlay */
-    .loading-overlay {
+    canvas#matrix-bg {
       position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.7);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      backdrop-filter: blur(3px);
-    }
-    .loading-spinner {
-      width: 60px;
-      height: 60px;
-      border: 5px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      border-top-color: var(--secondary);
-      animation: spin-overlay 1s ease-in-out infinite;
-    }
-    @keyframes spin-overlay {
-      to { transform: rotate(360deg); }
-    }
-    .loading-overlay.show {
-      display: flex;
-      animation: fadeIn 0.3s ease;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      opacity: 0.35;
+      pointer-events: none;
     }
 
-    @media (max-width:768px){
-      body{padding:10px;}
-      .content{padding:18px;}
-      .tab{flex:1;justify-content:center;}
-      .card-value{font-size:26px;}
-      .action-btn{width:100%;justify-content:center;}
-      .top-actions{width:100%;justify-content:flex-start;}
-      .grid.cols2{grid-template-columns:1fr;}
-      .td-input{width:90px;}
+    canvas#translucent-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 1;
+      opacity: 0.85;
+      pointer-events: none;
+      background: radial-gradient(circle at center, rgba(0, 20, 10, 0.6) 0%, rgba(0, 0, 0, 0.85) 100%);
     }
+
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #33ff99;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo { height: 40px; }
+
+    .header-right {
+      display: flex;
+      gap: 12px;
+    }
+
+    .contact-icon {
+      color: #33ff99;
+      text-decoration: none;
+      font-size: 20px;
+      padding: 5px 10px;
+      border: 1px solid #33ff99;
+      border-radius: 30px;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      padding: 30px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* 🔥 STMS ONNWORK PORTAL */
+
+    .stms-portal {
+      display:block;
+      text-decoration:none;
+      color:#33ff99;
+      border:1px solid #33ff99;
+      border-radius:10px;
+      padding:20px;
+      margin-bottom:30px;
+      background:rgba(0,0,0,0.7);
+      backdrop-filter:blur(2px);
+      box-shadow:0 0 20px rgba(51,255,153,0.15);
+      transition:0.25s;
+    }
+
+    .stms-portal:hover {
+      box-shadow:0 0 25px #33ff99;
+      transform:scale(1.02);
+    }
+
+    .stms-header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:15px;
+    }
+
+    .stms-brand {
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+
+    .stms-logo { height:35px; }
+
+    .stms-title { font-weight:bold; font-size:18px; }
+    .stms-sub { font-size:11px; opacity:0.7; }
+
+    .stms-status {
+      font-size:12px;
+      border:1px solid #33ff99;
+      padding:5px 10px;
+      border-radius:20px;
+    }
+
+    .dot {
+      height:8px;
+      width:8px;
+      background:#33ff99;
+      border-radius:50%;
+      display:inline-block;
+      margin-right:6px;
+    }
+
+    .stms-body {
+      display:flex;
+      gap:10px;
+      justify-content:space-between;
+      margin:15px 0;
+    }
+
+    .stms-card {
+      flex:1;
+      border:1px solid rgba(51,255,153,0.4);
+      border-radius:6px;
+      padding:10px;
+      text-align:center;
+      background:rgba(0,0,0,0.4);
+    }
+
+    .stms-card .label { font-size:10px; opacity:0.6; }
+    .stms-card .value { font-size:18px; font-weight:bold; }
+    .stms-card .sub { font-size:10px; opacity:0.7; }
+
+    .stms-footer {
+      font-size:12px;
+      opacity:0.8;
+      border-top:1px solid rgba(51,255,153,0.3);
+      padding-top:10px;
+    }
+
+    /* rest untouched */
+
+    .grid {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    .icon-box {
+      border: 2px solid #33ff99;
+      padding: 18px;
+      font-size: 28px;
+      border-radius: 60px;
+      color: #33ff99;
+      text-decoration: none;
+    }
+
+    .section-title {
+      margin: 30px 0 15px 0;
+      font-size: 18px;
+      border-left: 3px solid #33ff99;
+      padding-left: 12px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn {
+      border: 1px solid #33ff99;
+      padding: 14px;
+      text-align: center;
+      text-decoration: none;
+      color: #33ff99;
+      border-radius: 8px;
+    }
+
   </style>
 </head>
 
 <body>
 
-  <!-- LOADING OVERLAY -->
-  <div class="loading-overlay" id="loadingOverlay">
-    <div class="loading-spinner"></div>
+<canvas id="matrix-bg"></canvas>
+<canvas id="translucent-overlay"></canvas>
+
+<div class="sticky-header">
+  <img src="logo.png" class="logo">
+  <div class="header-right">
+    <a href="https://wa.me/917044358282" target="_blank" class="contact-icon">💬</a>
+    <a href="tel:+917044358282" class="contact-icon">📞</a>
+    <a href="mailto:onn@jamesmoriarty.in" class="contact-icon">✉️</a>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- ✅ ONLY CHANGED BLOCK -->
+  <a href="onnwork.html" class="stms-portal">
+
+    <div class="stms-header">
+      <div class="stms-brand">
+        <img src="logo.png" class="stms-logo">
+        <div>
+          <div class="stms-title">ONNwork</div>
+          <div class="stms-sub">Automations • ERP • Control</div>
+        </div>
+      </div>
+
+      <div class="stms-status">
+        <span class="dot"></span> LIVE
+      </div>
+    </div>
+
+    <div class="stms-body">
+      <div class="stms-card">
+        <div class="label">MODULE</div>
+        <div class="value">STMS</div>
+        <div class="sub">Trims</div>
+      </div>
+
+      <div class="stms-card">
+        <div class="label">STATUS</div>
+        <div class="value">ACTIVE</div>
+        <div class="sub">Operational</div>
+      </div>
+
+      <div class="stms-card">
+        <div class="label">SYSTEM</div>
+        <div class="value">ONN</div>
+        <div class="sub">Core</div>
+      </div>
+    </div>
+
+    <div class="stms-footer">
+      > ENTER ONNWORK AUTOMATIONS →
+    </div>
+
+  </a>
+
+  <!-- rest unchanged -->
+
+  <div class="grid">
+    <a class="icon-box" href="https://wa.me/917044358282">💬</a>
+    <a class="icon-box" href="tel:+917044358282">📞</a>
+    <a class="icon-box" href="mailto:onn@jamesmoriarty.in">✉️</a>
   </div>
 
-  <!-- TOAST WRAP -->
-  <div class="toast-wrap" id="toastWrap"></div>
+  <div class="section-title">> EXPLORE:</div>
 
-  <!-- SHERIFF DIALOG -->
-  <div class="dlg-backdrop" id="dlgBackdrop">
-    <div class="dlg">
-      <div class="dlg-head">
-        <div class="dlg-title" id="dlgTitle"><i class="fas fa-circle-info"></i> Message</div>
-        <button class="dlg-x" onclick="dlgClose()"><i class="fas fa-xmark"></i></button>
-      </div>
-      <div class="dlg-body">
-        <div class="dlg-msg" id="dlgMsg">-</div>
-      </div>
-      <div class="dlg-actions" id="dlgActions"></div>
-    </div>
+  <div class="buttons">
+    <a class="btn" href="product.html">📦 PRODUCTS</a>
+    <a class="btn" href="services.html">🤝 SERVICES</a>
+    <a class="btn" href="toys.html">🎮 TOYS</a>
+    <a class="btn" href="terms.html">📜 TERMS & CONDITIONS</a>
+    <a class="btn" href="privacy.html">🔒 PRIVACY POLICY</a>
   </div>
 
-  <!-- LOGIN VIEW -->
-  <div class="login-container" id="loginView">
-    <div class="login-header">
-      <h1><i class="fas fa-shield-alt"></i> Sheriff Management System</h1>
-      <p>Login required to access SMS modules. Powered by Offices of Nawnit Nihal.</p>
-    </div>
-
-    <div class="login-body">
-      <div class="login-grid">
-        <div class="login-field">
-          <label>Username</label>
-          <input id="loginUser" placeholder="e.g. admin" autocomplete="username">
-        </div>
-        <div class="login-field">
-          <label>Password</label>
-          <input id="loginPass" type="password" placeholder="********" autocomplete="current-password">
-        </div>
-      </div>
-
-      <div class="login-actions">
-        <button class="login-btn primary" onclick="login()">
-          <i class="fas fa-right-to-bracket"></i> Login
-        </button>
-        <button class="login-btn dark" onclick="loginClear()">
-          <i class="fas fa-eraser"></i> Clear
-        </button>
-      </div>
-
-      <div class="login-note">
-        
-      </div>
-    </div>
-  </div>
-
-  <!-- APP VIEW -->
-  <div class="container hidden" id="appView">
-
-    <div class="header">
-      <div class="branding">
-        <h1><i class="fas fa-shield-alt"></i> Sheriff Management System</h1>
-        <div class="subtext">Powered by Offices of Nawnit Nihal</div>
-      </div>
-
-      <div class="top-actions">
-
-        <!-- 🔴 lock warning -->
-        <div class="lock-pill" id="lockPill" style="display:none;">
-          <i class="fas fa-lock"></i>
-          <span id="lockText" style="font-weight:900;">LOCKED</span>
-        </div>
-
-        <div class="user-pill" id="userPill" style="display:none;">
-          <i class="fas fa-user"></i>
-          <span id="userName">-</span>
-          <span style="opacity:0.8;" id="userRole">(USER)</span>
-        </div>
-
-        <button class="logout-btn" id="logoutBtn" style="display:none;" onclick="logout()">
-          <i class="fas fa-right-from-bracket"></i> Logout
-        </button>
-
-        <div class="system-status">
-          <i class="fas fa-circle" style="color: var(--secondary);"></i>
-          <span>System Live</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="tabs">
-      <button class="tab active" onclick="switchModule('STMS', this)">
-        <i class="fas fa-screwdriver-wrench"></i> STMS
-      </button>
-      <button class="tab" onclick="switchModule('SRVS', this)">
-        <i class="fas fa-table"></i> SRVS
-      </button>
-      <button class="tab" onclick="switchModule('SCMS', this)">
-        <i class="fas fa-coins"></i> SCMS
-      </button>
-      <button class="tab" onclick="switchModule('SNMS', this)">
-        <i class="fas fa-bell"></i> SNMS
-      </button>
-    </div>
-
-    <div class="content">
-
-      <div class="dashboard-cards">
-        <div class="card">
-          <div class="card-header">
-            <span class="card-title">Selected Module</span>
-            <i class="fas fa-layer-group" style="color: var(--warning);"></i>
-          </div>
-          <div class="card-value" id="selectedModuleName">STMS</div>
-          <div class="card-sub" id="selectedModuleSubtitle">Sheriff Trims Management System</div>
-        </div>
-
-        <div class="card" style="border-left-color: var(--warning);">
-          <div class="card-header">
-            <span class="card-title">Module Status</span>
-            <i class="fas fa-signal" style="color: var(--warning);"></i>
-          </div>
-          <div class="card-value" id="moduleStatus">LIVE</div>
-          <div class="card-sub" id="moduleStatusSub">Ready</div>
-        </div>
-
-        <div class="card" style="border-left-color: var(--primary-light);">
-          <div class="card-header">
-            <span class="card-title" id="updatedTillTitle">STMS Updated Till</span>
-            <i class="fas fa-flag-checkered" style="color: var(--primary-light);"></i>
-          </div>
-          <div class="card-value" id="updatedTillValue">-</div>
-          <div class="card-sub" id="updatedTillSub">Login required</div>
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="panel-title" id="panelTitle">
-          <i class="fas fa-screwdriver-wrench" style="color:var(--secondary);"></i> STMS Web UI
-        </div>
-        <div class="panel-sub" id="panelSub">
-          Dialogue (STMS): This Web UI is secondary UI to Sheet. Use it for butter smooth execution.
-        </div>
-
-        <div id="stmsActions" class="action-row">
-          <button class="action-btn action-green" onclick="openAllocation()">
-            <i class="fas fa-share-nodes"></i> Allocation
-          </button>
-          <button class="action-btn action-green" onclick="openIssuance()">
-            <i class="fas fa-right-left"></i> Issuance
-          </button>
-          <button class="action-btn action-green" onclick="openChallan()">
-            <i class="fas fa-truck"></i> Challan Tagging
-          </button>
-          <button class="action-btn action-green" onclick="window.open('https://script.google.com/macros/s/AKfycbxhRb4sa3MM7Qgl5vH1CfoTw4tvKv96-CKAqpcAMPOhw_1fm8YQH_A0sQAKn_W5cHyfqA/exec', '_blank')">
-            <i class="fas fa-chart-column"></i> Reports
-          </button>
-          <button class="action-btn action-dark" onclick="window.open('https://script.google.com/macros/s/AKfycbwY54enyjNsZOT2AmqWxmi7KWAgZOHnQEmutm1w-bzSFlB-2NThQ_DOFQJYa9JxBDme/exec', '_blank')">
-            <i class="fas fa-wrench"></i> Adjustment (Admin)
-          </button>
-          <button class="action-btn action-dark" onclick="openDataImport()">
-            <i class="fas fa-file-import"></i> Data Import
-          </button>
-        </div>
-
-        <div id="externalPanel" style="display:none;">
-          <div class="external-box">
-            <div style="text-align:center; max-width:520px;">
-              <div style="font-weight:900; color:var(--primary2); margin-bottom:10px;">
-                SRVS is loaded from external system
-              </div>
-              <div style="font-size:13px; font-weight:900; margin-bottom:16px;">
-                Iframe embedding is blocked by Google ("refused to connect").
-                So we open SRVS safely in new tab.
-              </div>
-              <button class="open-link" onclick="openSRVS()">
-                <i class="fas fa-arrow-up-right-from-square"></i> Open SRVS (Live)
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div id="constructionPanel" style="display:none;">
-          <div class="external-box">
-            <div style="text-align:center; max-width:520px;">
-              <div style="font-weight:900; color:var(--primary2); margin-bottom:10px;">
-                This module is under construction
-              </div>
-              <div style="font-size:13px; font-weight:900; margin-bottom:16px;">
-                Development work ongoing. STMS is operational.
-              </div>
-              <span class="pill yellow"><i class="fas fa-person-digging"></i> UNDER CONSTRUCTION</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-
-  <!-- MODAL -->
-  <div class="modal-backdrop" id="modalBackdrop">
-    <div class="modal">
-      <div class="modal-header">
-        <div class="modal-title" id="modalTitle"><i class="fas fa-window-maximize"></i> Modal</div>
-        <div class="modal-header-actions">
-          <button class="modal-maximize" onclick="toggleModalFullscreen()"><i class="fas fa-expand"></i></button>
-          <button class="modal-close" onclick="closeModal()"><i class="fas fa-xmark"></i></button>
-        </div>
-      </div>
-      <div class="modal-body" id="modalBody"></div>
-      <div class="modal-actions" id="modalActions"></div>
-    </div>
-  </div>
+</div>
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbxHsrB7H6c8c-t5kZ_pOomrsVyfokncRDsxgF8AT-ccbaJGNclmD4TSs5E0nbImkl8zeQ/exec";
+const canvas = document.getElementById("matrix-bg");
+const ctx = canvas.getContext("2d");
 
-async function callBackend(action, payload = {}) {
-  const res = await fetch(API_URL, {
-    method: "POST",
-    body: JSON.stringify({ action, payload }),
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const letters = "01ONNWORK";
+const fontSize = 14;
+const columns = canvas.width / fontSize;
+const drops = Array.from({length:columns}).map(()=>Math.random()*-100);
+
+function drawMatrix(){
+  ctx.fillStyle="rgba(0,0,0,0.05)";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle="#33ff99";
+  ctx.font=fontSize+"px monospace;
+
+  drops.forEach((y,i)=>{
+    const text=letters[Math.floor(Math.random()*letters.length)];
+    ctx.fillText(text,i*fontSize,y*fontSize);
+    if(y*fontSize>canvas.height && Math.random()>0.975) drops[i]=0;
+    drops[i]++;
   });
-  return await res.json();
+
+  requestAnimationFrame(drawMatrix);
 }
-
-async function stms_route(action, payload) {
-  return await callBackend(action, payload);
-}
-
-function showLoading() {
-  document.getElementById('loadingOverlay').classList.add('show');
-}
-
-function hideLoading() {
-  document.getElementById('loadingOverlay').classList.remove('show');
-}
-
-const SRVS_URL = "https://script.google.com/macros/s/AKfycbygsDKCzP1N90Pnck2xQi_CeROJLXh3QA_9iTS0iufwkr59-Z0C6gJFz1EWtDZwgMnAAQ/exec";
-
-const SPECIAL_EXTRA_CODE = "251090";
-
-let ACTIVE_MODULE = "STMS";
-let CURRENT_USER = null;
-let DATA_TABLE = null;
-
-let ALLOC_CACHE = null;
-let ISS_CACHE = null;
-let CHL_CACHE = null;
-
-function toast(msg, type="ok", title="Sheriff"){
-  try{
-    const wrap=document.getElementById("toastWrap");
-    const el=document.createElement("div");
-    el.className="toast "+(type==="danger"?"danger":type==="warn"?"warn":"");
-    el.innerHTML=`
-      <i class="fas ${type==="danger"?"fa-triangle-exclamation":type==="warn"?"fa-circle-exclamation":"fa-circle-check"}"></i>
-      <div>
-        <div class="t1">${title}</div>
-        <div class="t2">${String(msg||"")}</div>
-      </div>
-    `;
-    wrap.appendChild(el);
-    setTimeout(()=>{ el.style.opacity="0"; el.style.transform="translateY(8px)"; }, 2600);
-    setTimeout(()=>{ el.remove(); }, 3100);
-  }catch(e){
-    console.log(msg);
-  }
-}
-
-function dlgOpen({title="Message", msg="-", icon="fa-circle-info", buttons=[]}){
-  document.getElementById("dlgTitle").innerHTML=`<i class="fas ${icon}"></i> ${title}`;
-  document.getElementById("dlgMsg").textContent=String(msg||"-");
-  const actions=document.getElementById("dlgActions");
-  actions.innerHTML="";
-  if(!buttons.length){
-    buttons=[{label:"OK", type:"dark", onClick:()=>dlgClose()}];
-  }
-  buttons.forEach(b=>{
-    const btn=document.createElement("button");
-    btn.className="btn "+(b.type||"dark");
-    btn.innerHTML=`${b.icon?`<i class="fas ${b.icon}"></i>`:""} ${b.label||"OK"}`;
-    btn.onclick=()=>{ try{ b.onClick && b.onClick(); }catch(e){} };
-    actions.appendChild(btn);
-  });
-  document.getElementById("dlgBackdrop").style.display="flex";
-}
-
-function dlgClose(){
-  document.getElementById("dlgBackdrop").style.display="none";
-  document.getElementById("dlgActions").innerHTML="";
-}
-
-function dlgConfirm(msg, onYes){
-  dlgOpen({
-    title:"Confirmation",
-    msg,
-    icon:"fa-circle-question",
-    buttons:[
-      {label:"Cancel", type:"danger", icon:"fa-xmark", onClick:()=>dlgClose()},
-      {label:"Yes, Proceed", type:"primary", icon:"fa-check", onClick:()=>{ dlgClose(); onYes && onYes(); }}
-    ]
-  });
-}
-
-function showLockPill(text){
-  const pill=document.getElementById("lockPill");
-  const t=document.getElementById("lockText");
-  if(!pill||!t) return;
-  t.textContent=text || "LOCKED";
-  pill.style.display="flex";
-}
-function hideLockPill(){
-  const pill=document.getElementById("lockPill");
-  if(pill) pill.style.display="none";
-}
-
-async function lockStatus(cb){
-  const token = localStorage.getItem("sms_sessionId") || "";
-  if(!token){
-    hideLockPill();
-    cb && cb({locked:false, res:{ok:true}});
-    return;
-  }
-  try {
-    const res = await callBackend("lockStatus", { token });
-    const d = res?.data || {};
-    if(d && d.acquired===false){
-      showLockPill((d.message || "SYSTEM LOCKED").toUpperCase());
-      cb && cb({locked:true, res});
-      return;
-    } else {
-      hideLockPill();
-    }
-    cb && cb({locked:false, res});
-  } catch(e) {
-    cb && cb({locked:false, res:{ok:false}});
-  }
-}
-
-async function acquireLock(phase, onOk){
-  const token = localStorage.getItem("sms_sessionId") || "";
-  if(!token){
-    dlgOpen({title:"Not Logged In", msg:"Login required.", icon:"fa-lock"});
-    return;
-  }
-  try {
-    const res = await callBackend("acquireLock", { token, phase: phase || "GENERAL" });
-    const d = res?.data || {};
-    if(!res||res.ok===false){
-      dlgOpen({title:"Lock Error", msg:res?.error || "Unable to acquire lock.", icon:"fa-triangle-exclamation"});
-      return;
-    }
-    if(!d.acquired){
-      showLockPill((d.message || "SYSTEM BUSY").toUpperCase());
-      dlgOpen({title:"SYSTEM LOCKED", msg:d.message || "Another user is using STMS.", icon:"fa-lock"});
-      return;
-    }
-    hideLockPill();
-    onOk && onOk();
-  } catch(err) {
-    dlgOpen({title:"Lock Error", msg:err.message || "Unknown lock error", icon:"fa-triangle-exclamation"});
-  }
-}
-
-async function releaseLock(){
-  const token = localStorage.getItem("sms_sessionId") || "";
-  if(!token) return;
-  try {
-    await callBackend("releaseLock", { token });
-  } catch(e) {}
-}
-
-async function callAPI(fnName, argsArray, onSuccess, onFail){
-  lockStatus(async (x)=>{
-    if(x.locked){
-      toast("SYSTEM LOCKED: another user is using STMS","warn","Lock");
-      return;
-    }
-    const safeFail = onFail || function(err){
-      let msg = "";
-      try{
-        if(typeof err === "string") msg = err;
-        else if(err && typeof err === "object") msg = err.message || err.details || err.stack || JSON.stringify(err);
-        else msg = String(err || "");
-      } catch(e){ msg = "Backend failure (unable to parse error)."; }
-      if(!msg || msg==="{}") msg = "Backend failure (no message).";
-      dlgOpen({ title:"System Error", msg: msg, icon:"fa-triangle-exclamation" });
-    };
-    try {
-      const payload = argsArray && argsArray.length ? { sessionId: argsArray[0], ...(argsArray[1] || {}) } : {};
-      const res = await callBackend(fnName, payload);
-      if(typeof onSuccess === "function") onSuccess(res);
-    } catch(err) {
-      safeFail(err);
-    }
-  });
-}
-
-function openSRVS(){ window.open(SRVS_URL,"_blank"); }
-
-function setActiveTab(btn){
-  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
-  if(btn) btn.classList.add("active");
-}
-
-function moduleMeta(module){
-  if(module==="STMS") return { name:"STMS", sub:"Sheriff Trims Management System", icon:"fa-screwdriver-wrench" };
-  if(module==="SRVS") return { name:"SRVS", sub:"Sheriff Report Viewing System", icon:"fa-table" };
-  if(module==="SCMS") return { name:"SCMS", sub:"Sheriff Cost Management System", icon:"fa-coins" };
-  if(module==="SNMS") return { name:"SNMS", sub:"Sheriff Notification Management System", icon:"fa-bell" };
-  return { name:module, sub:"", icon:"fa-layer-group" };
-}
-
-function renderCardsForModule(module){
-  const meta = moduleMeta(module);
-  document.getElementById("selectedModuleName").textContent = meta.name;
-  document.getElementById("selectedModuleSubtitle").textContent = meta.sub;
-  const isLive = (module === "STMS" || module === "SRVS");
-  document.getElementById("moduleStatus").textContent = isLive ? "LIVE" : "UNDER CONSTRUCTION";
-  document.getElementById("moduleStatusSub").textContent = isLive ? "Ready" : "Building…";
-  const title = (module === "STMS") ? "STMS Updated Till" : "SMS Updated Till";
-  document.getElementById("updatedTillTitle").textContent = title;
-  if(module !== "STMS"){
-    document.getElementById("updatedTillValue").textContent = "-";
-    document.getElementById("updatedTillSub").textContent = (module === "SRVS") ? "External module" : "Not applicable";
-    return;
-  }
-  const sid = localStorage.getItem("sms_sessionId") || "";
-  if(!sid){
-    document.getElementById("updatedTillValue").textContent = "-";
-    document.getElementById("updatedTillSub").textContent = "Login required";
-    return;
-  }
-  document.getElementById("updatedTillValue").textContent = "-";
-  document.getElementById("updatedTillSub").textContent = "Loading…";
-  callAPI("api_getStmsStatus", [sid], res => {
-    if(!res || !res.ok){
-      document.getElementById("updatedTillValue").textContent = "-";
-      document.getElementById("updatedTillSub").textContent = "Unable to load";
-      return;
-    }
-    document.getElementById("updatedTillValue").textContent = res.data?.updatedTillJobslip || "-";
-    document.getElementById("updatedTillSub").textContent = "Rows: " + (res.data?.rows ?? "-");
-  }, err => {
-    document.getElementById("updatedTillValue").textContent = "-";
-    document.getElementById("updatedTillSub").textContent = "Error: " + ((err && err.message) ? err.message : "unknown");
-  });
-}
-
-function renderModulePanel(module){
-  const meta=moduleMeta(module);
-  document.getElementById("panelTitle").innerHTML=`<i class="fas ${meta.icon}" style="color:var(--secondary);"></i> ${meta.name} Web UI`;
-  const sub=(module==="STMS") ? "Dialogue (STMS): This Web UI is secondary UI to Sheet. Use it for butter smooth execution." : (module==="SRVS") ? "Dialogue (SRVS): Reports live in external system." : "Dialogue (SMS): Module under construction.";
-  document.getElementById("panelSub").textContent=sub;
-  document.getElementById("stmsActions").style.display=(module==="STMS")?"flex":"none";
-  document.getElementById("externalPanel").style.display=(module==="SRVS")?"block":"none";
-  document.getElementById("constructionPanel").style.display=((module==="SCMS")||(module==="SNMS"))?"block":"none";
-}
-
-function applyRoleVisibility(){
-  const btnAdj=document.querySelector('button[onclick*="Adjustment"]');
-  if(!CURRENT_USER) return;
-  if(String(CURRENT_USER.role||"").toUpperCase()==="ADMIN") { if(btnAdj) btnAdj.disabled = false; }
-  else { if(btnAdj) btnAdj.disabled = true; }
-}
-
-function switchModule(module, btn){
-  showLoading();
-  setTimeout(() => {
-    ACTIVE_MODULE=module;
-    setActiveTab(btn);
-    renderCardsForModule(module);
-    renderModulePanel(module);
-    applyRoleVisibility();
-    hideLoading();
-  }, 100);
-}
-
-function showLogin(){
-  document.getElementById("loginView").classList.remove("hidden");
-  document.getElementById("appView").classList.add("hidden");
-}
-
-function showApp(){
-  document.getElementById("loginView").classList.add("hidden");
-  document.getElementById("appView").classList.remove("hidden");
-}
-
-function loginClear(){
-  document.getElementById("loginUser").value="";
-  document.getElementById("loginPass").value="";
-}
-
-async function login(){
-  const u=document.getElementById("loginUser").value.trim();
-  const p=document.getElementById("loginPass").value.trim();
-  if(!u||!p){
-    dlgOpen({title:"Login Required", msg:"Please enter username and password.", icon:"fa-lock"});
-    return;
-  }
-  toast("Logging in…","warn","Auth");
-  showLoading();
-  try {
-    const res = await callBackend("api_loginWeb", { username: u, password: p });
-    hideLoading();
-    if(!res||!res.ok){
-      dlgOpen({title:"Login Failed", msg:res?.error||"Invalid credentials.", icon:"fa-triangle-exclamation"});
-      return;
-    }
-    localStorage.setItem("sms_sessionId", res.sessionId);
-    showUser(res.user);
-    showApp();
-    toast("✅ Login success","ok","Auth");
-    switchModule("STMS", document.querySelector(".tab"));
-    lockStatus(()=>{});
-  } catch(err) {
-    hideLoading();
-    dlgOpen({title:"Auth Error", msg:err.message||"Unknown error", icon:"fa-triangle-exclamation"});
-  }
-}
-
-async function logout(){
-  const sessionId=localStorage.getItem("sms_sessionId");
-  if(!sessionId){ location.reload(); return; }
-  await releaseLock();
-  try {
-    await callBackend("api_logoutWeb", { sessionId });
-  } catch(e) {}
-  localStorage.removeItem("sms_sessionId");
-  CURRENT_USER=null;
-  showLogin();
-  hideLockPill();
-  toast("Logged out","ok","Auth");
-}
-
-function showUser(u){
-  CURRENT_USER=u;
-  document.getElementById("userPill").style.display="flex";
-  document.getElementById("logoutBtn").style.display=(u.channel==="WEB")?"inline-flex":"none";
-  document.getElementById("userName").textContent=u.displayName||u.username||"-";
-  document.getElementById("userRole").textContent="("+(u.role||"USER")+")";
-  applyRoleVisibility();
-}
-
-async function initAuth(){
-  const sessionId=localStorage.getItem("sms_sessionId");
-  if(!sessionId){
-    CURRENT_USER=null;
-    showLogin();
-    return;
-  }
-  try {
-    const res = await callBackend("api_whoAmI", { sessionId });
-    if(!res||!res.ok){
-      localStorage.removeItem("sms_sessionId");
-      CURRENT_USER=null;
-      showLogin();
-      return;
-    }
-    showUser(res.user);
-    showApp();
-    switchModule("STMS", document.querySelector(".tab.active"));
-    lockStatus(()=>{});
-  } catch(e) {
-    localStorage.removeItem("sms_sessionId");
-    CURRENT_USER=null;
-    showLogin();
-  }
-}
-
-function toggleModalFullscreen(){
-  const modal = document.querySelector('.modal');
-  if(!modal) return;
-  modal.classList.toggle('fullscreen');
-  const icon = document.querySelector('.modal-maximize i');
-  if(icon) icon.className = modal.classList.contains('fullscreen') ? 'fas fa-compress' : 'fas fa-expand';
-}
-
-function enableModalShortcuts(){
-  const modal = document.querySelector('.modal');
-  if(!modal) return;
-  const escHandler = (e) => { if(e.key === 'Escape' || e.keyCode === 27) closeModal(); };
-  document.addEventListener('keydown', escHandler);
-  const header = modal.querySelector('.modal-header');
-  if(header) header.addEventListener('dblclick', toggleModalFullscreen);
-  modal._escHandler = escHandler;
-}
-
-function openModal(titleHtml, bodyHtml, actionsHtml){
-  document.getElementById("modalTitle").innerHTML=titleHtml;
-  document.getElementById("modalBody").innerHTML=bodyHtml;
-  document.getElementById("modalActions").innerHTML=actionsHtml||"";
-  const backdrop = document.getElementById("modalBackdrop");
-  backdrop.style.display="flex";
-  const modal = document.querySelector('.modal');
-  if(modal){
-    modal.classList.remove('fullscreen');
-    const icon = document.querySelector('.modal-maximize i');
-    if(icon) icon.className = 'fas fa-expand';
-  }
-  enableModalShortcuts();
-}
-
-function closeModal(){
-  releaseLock();
-  const backdrop = document.getElementById("modalBackdrop");
-  backdrop.style.display="none";
-  document.getElementById("modalBody").innerHTML="";
-  document.getElementById("modalActions").innerHTML="";
-  const modal = document.querySelector('.modal');
-  if(modal && modal._escHandler){
-    document.removeEventListener('keydown', modal._escHandler);
-    delete modal._escHandler;
-  }
-  try{
-    if (DATA_TABLE) { DATA_TABLE.destroy(); DATA_TABLE = null; }
-  }catch(e){}
-}
-
-async function openDataImport() {
-  const body = `<div class="block"><div class="block-head"><div><div class="block-title">Karigar Wise Pending Jobcard With Size/Color Breakdown</div><div class="block-sub">Upload Excel file to import into "Jobs" sheet and trigger STMS_DATA rebuild</div></div><span class="pill yellow"><i class="fas fa-file-import"></i> IMPORT</span></div><div class="field" style="margin-top: 16px;"><label>Select Excel File (.xlsx, .xls)</label><input type="file" id="importFile" accept=".xlsx,.xls" style="padding: 12px; border: 2px dashed var(--border);"></div><div id="importProgress" style="display: none; margin-top: 16px;"><div style="display: flex; align-items: center; gap: 12px;"><div class="spinner"></div><div style="font-weight: 900; color: var(--primary2);" id="progressText">Uploading...</div></div><div style="margin-top: 8px; font-size: 12px; font-weight: 900; color: var(--gray);" id="progressDetails"></div></div><div id="importResult" style="display: none; margin-top: 16px;"></div></div>`;
-  const actions = `<button class="btn dark" onclick="closeModal()"><i class="fas fa-xmark"></i> Close</button><button class="btn primary" onclick="submitImport()"><i class="fas fa-upload"></i> Upload & Import</button>`;
-  openModal(`<i class="fas fa-file-import"></i> Data Import`, body, actions);
-  document.getElementById('importFile').value = '';
-  document.getElementById('importProgress').style.display = 'none';
-  document.getElementById('importResult').style.display = 'none';
-}
-
-async function submitImport() {
-  const fileInput = document.getElementById('importFile');
-  const file = fileInput.files[0];
-  if (!file) { dlgOpen({ title: "No File Selected", msg: "Please select an Excel file first.", icon: "fa-circle-exclamation" }); return; }
-  showLoading();
-  toast("Uploading Excel to import folder…", "warn", "Import");
-  const reader = new FileReader();
-  reader.onload = async function (e) {
-    const base64Data = e.target.result.split(',')[1];
-    try {
-      const res = await callBackend("api_excelImport", { sessionId: localStorage.getItem("sms_sessionId"), fileData: base64Data, fileName: file.name });
-      hideLoading();
-      if (!res || !res.ok) { dlgOpen({ title: "Upload Failed", msg: res?.error || "Upload failed.", icon: "fa-triangle-exclamation" }); return; }
-      dlgOpen({ title: "Upload Successful", msg: "✅ File uploaded to import folder and master trigger executed.", icon: "fa-circle-check" });
-      toast("Excel uploaded successfully", "ok", "Import");
-    } catch(err) {
-      hideLoading();
-      dlgOpen({ title: "Upload Error", msg: err.message || "Unknown upload error", icon: "fa-triangle-exclamation" });
-    }
-  };
-  reader.readAsDataURL(file);
-}
-
-document.addEventListener("DOMContentLoaded", function(){
-  initAuth();
-  renderCardsForModule("STMS");
-  renderModulePanel("STMS");
-  applyRoleVisibility();
-  lockStatus(()=>{});
-  setInterval(()=>lockStatus(()=>{}), 6000);
-});
-
-function openAllocation(){
-  const body=`<div class="grid cols2"><div class="field"><label>Jobslip (numeric)</label><input id="allocJobslip" placeholder="e.g. 1699" /></div><div class="field"><label>Status</label><input id="allocStatus" disabled value="-" /></div></div><div id="allocRenderZone"></div>`;
-  const actions=`<button class="btn dark" onclick="closeModal()"><i class="fas fa-xmark"></i> Close</button><button class="btn primary" onclick="allocLoad()"><i class="fas fa-download"></i> Load</button><button class="btn primary" onclick="allocSubmit()"><i class="fas fa-paper-plane"></i> Submit Allocation</button>`;
-  openModal(`<i class="fas fa-share-nodes"></i> STMS Allocation (Web UI)`, body, actions);
-}
-
-async function allocLoad(){
-  const jobslip=document.getElementById("allocJobslip").value.trim();
-  if(!/^\d+$/.test(jobslip)){ dlgOpen({title:"Invalid Jobslip", msg:"Jobslip must be numeric.", icon:"fa-triangle-exclamation"}); return; }
-  document.getElementById("allocStatus").value="Loading…";
-  const sid=localStorage.getItem("sms_sessionId")||"";
-  if(!sid){ dlgOpen({title:"Not Logged In", msg:"Please login first to use STMS.", icon:"fa-lock"}); return; }
-  showLoading();
-  try {
-    const res = await callBackend("api_stmsAllocation_load", { sessionId: sid, jobslip });
-    hideLoading();
-    if(!res||!res.ok){ dlgOpen({title:"Load Failed", msg:res?.error||"Allocation load failed.", icon:"fa-triangle-exclamation"}); document.getElementById("allocStatus").value="Error"; return; }
-    ALLOC_CACHE=res;
-    if(res.lock && res.lock.allocationAllowed===false){ document.getElementById("allocStatus").value="LOCKED"; document.getElementById("allocRenderZone").innerHTML=`<div class="pill red"><i class="fas fa-lock"></i> ${res.lock.reason}</div>`; return; }
-    document.getElementById("allocStatus").value="Loaded";
-    document.getElementById("allocRenderZone").innerHTML=allocRenderHtml(res);
-    setTimeout(()=>allocHydratePrefillsProgressive(), 80);
-    toast("Allocation loaded","ok","STMS");
-  } catch(err) {
-    hideLoading();
-    dlgOpen({title:"System Error", msg:err.message||"Unknown error", icon:"fa-triangle-exclamation"});
-    document.getElementById("allocStatus").value="Error";
-  }
-}
-
-function allocRenderHtml(res){
-  if(!res.meta) return `<div class="tiny">No STMS_DATA rows found for this Jobslip.</div>`;
-  const meta=res.meta; const blocks=res.blocks||[];
-  let html=`<div class="block"><div class="block-head"><div><div class="block-title">Jobslip: ${meta.jobslip}</div><div class="block-sub">Karigar: ${meta.karigar||"-"} | Piece: ${meta.piece||"-"} | Qty: ${meta.jobTotalQty||"-"}</div></div><div><span class="pill green"><i class="fas fa-check"></i> Allocation Allowed</span>${meta.latestAllocId ? `<span class="pill yellow"><i class="fas fa-rotate"></i> Prefill from AllocID ${meta.latestAllocId}</span>`:""}</div></div><div class="tiny">✅ Progressive Sheet Math: <b>Available = Stock - Liability</b> (liability is progressive).</div></div>`;
-  blocks.forEach((b,bi)=>{
-    html+=`<div class="block"><div class="block-head"><div><div class="block-title">DESIGN+COLOR: ${b.designColor}</div><div class="block-sub">Design: ${b.designName||"-"} | Color: ${b.color||"-"} | Total Qty: ${b.totalQty||"-"}</div></div><div class="pill"><i class="fas fa-percent"></i> Extra%: ${b.extraPct||0}</div></div><table><thead><tr><th>Consumption Category</th><th>Mapped Stock Category</th><th>Required Qty</th><th>Variant</th><th>Stock Qty</th><th>Liability Qty</th><th>Available Qty<br><span class="tiny">(Stock - Liability)</span></th><th>Remark</th></tr></thead><tbody>`;
-    (b.lines||[]).forEach((ln,li)=>{
-      const selId=`alloc_sel_${bi}_${li}`; const remId=`alloc_rem_${bi}_${li}`;
-      const pre = String(ln.prefillVariant || "").trim();
-      const hasPrefill = pre && pre.toUpperCase() !== "NA";
-      let opts = `<option value="" ${(!hasPrefill ? "selected" : "")} disabled>Select Variant</option>`;
-      (ln.variantOptions||[]).forEach(x=>{ const v = String(x||"").trim(); if(!v) return; const sel = (hasPrefill && v === pre) ? "selected" : ""; opts += `<option value="${v}" ${sel}>${v}</option>`; });
-      html+=`<tr><td>${ln.consCat}</td><td>${ln.stockCat}</td><td><span class="pill yellow" style="border:none;background:#fef3c7;">${ln.requiredQty}</span></td><td><select id="${selId}" data-dc="${b.designColor}" data-conscat="${ln.consCat}" data-stockcat="${ln.stockCat}" data-requiredqty="${ln.requiredQty}" onchange="allocOnVariantChange(this)">${opts}</select></td><td><span class="pill" id="allocStock_${bi}_${li}">-</span></td><td><span class="pill" id="allocLiab_${bi}_${li}">-</span></td><td><span class="pill" id="allocAvail_${bi}_${li}">${(ln.availableQty===undefined||ln.availableQty===null) ? "-" : ln.availableQty}</span></td><td><input id="${remId}" value="${(ln.prefillRemark||"").replace(/"/g,'&quot;')}" /></td></tr>`;
-    });
-    html+=`</tbody></table></div>`;
-  });
-  return html;
-}
-
-function allocHydratePrefillsProgressive(){
-  const all = document.querySelectorAll("[id^='alloc_sel_']");
-  for(const sel of all){ const variant = String(sel.value||"").trim(); if(variant && variant.toUpperCase()!=="NA") allocOnVariantChange(sel, true); }
-}
-
-function allocProgressiveLocalAlready(sel, stockCat, variant){
-  const id = sel.id; const parts = id.split("_"); const bi = Number(parts[2]); const li = Number(parts[3]);
-  let localAlready = 0;
-  const all = document.querySelectorAll("[id^='alloc_sel_']");
-  for(const s of all){
-    const pid = s.id.split("_"); const pbi = Number(pid[2]); const pli = Number(pid[3]);
-    if(pbi > bi) continue; if(pbi === bi && pli >= li) continue;
-    const pStockCat = String(s.getAttribute("data-stockcat")||"").trim(); const pReqQty = Number(s.getAttribute("data-requiredqty")) || 0; const pVar = String(s.value||"").trim();
-    if(!pStockCat || !pVar) continue; if(pVar.toUpperCase()==="NA") continue;
-    if(pStockCat.toUpperCase() === String(stockCat||"").trim().toUpperCase() && pVar.toUpperCase() === String(variant||"").trim().toUpperCase()) localAlready += Math.ceil(pReqQty);
-  }
-  return localAlready;
-}
-
-async function allocOnVariantChange(sel, silent){
-  try{
-    const id = sel.id; const parts = id.split("_"); const bi = Number(parts[2]); const li = Number(parts[3]);
-    const availEl = document.getElementById(`allocAvail_${bi}_${li}`); const liabEl = document.getElementById(`allocLiab_${bi}_${li}`); const stockEl = document.getElementById(`allocStock_${bi}_${li}`);
-    if(!availEl || !liabEl || !stockEl) return;
-    const stockCat = String(sel.getAttribute("data-stockcat")||"").trim(); const requiredQty = Number(sel.getAttribute("data-requiredqty")) || 0; const variant = String(sel.value || "").trim();
-    if(!variant){ stockEl.textContent = "-"; liabEl.textContent = "-"; availEl.textContent = "-"; return; }
-    if(variant.toUpperCase() === "NA"){ stockEl.textContent = "NA"; liabEl.textContent = "NA"; availEl.textContent = "NA"; return; }
-    const localAlready = allocProgressiveLocalAlready(sel, stockCat, variant);
-    stockEl.textContent = "…"; liabEl.textContent = "…"; availEl.textContent = "…";
-    const sid = localStorage.getItem("sms_sessionId") || "";
-    if(!sid){ dlgOpen({title:"Not Logged In", msg:"Login required.", icon:"fa-lock"}); return; }
-    const res = await callBackend("api_stmsAllocation_calcAvailability", { sessionId: sid, stockCat, variant, requiredQty, progressiveLocalAlready: localAlready });
-    if(!res || !res.ok){ stockEl.textContent = "-"; liabEl.textContent = "-"; availEl.textContent = "-"; if(!silent) toast(res?.error || "Availability calc failed", "warn", "STMS"); return; }
-    const d = res.data || {}; const stockBal = d.stockBalance; const liability = d.liability; const available = d.availableQty;
-    stockEl.textContent = (stockBal===null || stockBal===undefined) ? "-" : stockBal; liabEl.textContent = (liability===null || liability===undefined) ? "-" : liability; availEl.textContent = (available===null || available===undefined) ? "-" : available;
-    if(Number(available) < 0){ availEl.style.color = "#B91C1C"; availEl.style.fontWeight = "900"; } else { availEl.style.color = "#111827"; availEl.style.fontWeight = "900"; }
-  }catch(e){ console.error(e); }
-}
-
-async function allocSubmit(){
-  if(!ALLOC_CACHE || !ALLOC_CACHE.ok || !ALLOC_CACHE.meta){ dlgOpen({title:"Allocation Required", msg:"Load allocation first.", icon:"fa-circle-exclamation"}); return; }
-  const dcMetaMap = {}; (ALLOC_CACHE.blocks || []).forEach(b=>{ const dc = String(b.designColor || "").trim(); if(!dc) return; dcMetaMap[dc] = { extraPct: b.extraPct, sizeMap: b.sizeMap, consPerPieceMap: b.consPerPieceMap }; });
-  const selects=document.querySelectorAll("[id^='alloc_sel_']"); const lines=[]; const missing=[];
-  selects.forEach(sel=>{
-    const dc=String(sel.getAttribute("data-dc")||"").trim(); const consCat=String(sel.getAttribute("data-conscat")||"").trim(); const stockCat=String(sel.getAttribute("data-stockcat")||"").trim(); const requiredQty=Number(sel.getAttribute("data-requiredqty"))||0;
-    const variant=String(sel.value||"").trim(); const remId=sel.id.replace("alloc_sel_","alloc_rem_"); const remark=(document.getElementById(remId)?.value||"").trim();
-    if(!dc || !consCat || !stockCat || requiredQty<=0) return;
-    if(!variant || variant.toUpperCase()==="SELECT VARIANT") missing.push(`${dc} | ${consCat} | ${stockCat}`);
-    const meta = dcMetaMap[dc] || {};
-    lines.push({ designColor: dc, consCat, stockCat, variant, remark, requiredQty, extraPct: meta.extraPct, sizeMap: meta.sizeMap, consPerPieceMap: meta.consPerPieceMap });
-  });
-  if(missing.length){ dlgOpen({ title:"Incomplete Allocation", msg:"Variant not selected in "+missing.length+" line(s).\n\n" + missing.slice(0,12).map(x=>"• "+x).join("\n") + (missing.length>12 ? "\n• ...more lines missing" : ""), icon:"fa-triangle-exclamation" }); return; }
-  const sid=localStorage.getItem("sms_sessionId")||""; if(!sid){ dlgOpen({title:"Not Logged In", msg:"Login required.", icon:"fa-lock"}); return; }
-  acquireLock("ALLOCATION_SUBMIT", async ()=>{
-    showLoading(); toast("Submitting allocation…","warn","STMS");
-    try {
-      const res = await callBackend("api_stmsAllocation_submit", { sessionId: sid, jobslip: ALLOC_CACHE.meta.jobslip, selections: lines });
-      releaseLock(); hideLoading();
-      if(!res || !res.ok){ dlgOpen({title:"Submit Failed", msg:res?.error||"Submit failed", icon:"fa-triangle-exclamation"}); return; }
-      const allocId = res.allocationId || res.data?.allocationId || "-";
-      dlgOpen({ title:"Allocation Submitted", msg:"✅ Allocation submitted successfully.\nAllocation ID: "+allocId, icon:"fa-circle-check" });
-      allocLoad();
-    } catch(err){ releaseLock(); hideLoading(); dlgOpen({title:"System Error", msg:err.message||"Unknown error", icon:"fa-triangle-exclamation"}); }
-  });
-}
-
-function openIssuance(){
-  const body=`<div class="grid cols2"><div class="field"><label>Jobslip No. (Numeric only)</label><input id="issJobslip" placeholder="Example: 1699" /></div><div class="field"><label>Special Code</label><input id="issSpecialCode" placeholder="Enter code to unlock Special Extra Issuance" oninput="issRefreshSpecialPanel()" /><div class="tiny muted" style="margin-top:4px;">✅ Special Extra Issuance available (authorization required).</div></div></div><div class="action-row" style="margin-top:12px;"><button class="action-btn action-dark" onclick="issLoad()"><i class="fas fa-download"></i> Load Allocation</button><button class="action-btn action-green" id="issSubmitBtn" onclick="issSubmit()"><i class="fas fa-paper-plane"></i> Submit Issuance (OUT)</button><button class="action-btn action-dark" id="issCancelBtn" onclick="issCancel()"><i class="fas fa-rotate-left"></i> Cancel Issuance (IN)</button></div><div id="issStatus" class="tiny" style="margin-top:10px;"></div><div id="issRenderZone"></div>`;
-  const actions=`<button class="btn dark" onclick="closeModal()"><i class="fas fa-xmark"></i> Close</button>`;
-  openModal(`<i class="fas fa-right-left"></i> STMS Issuance UI (Web)`, body, actions);
-  const b1=document.getElementById("issSubmitBtn"); const b2=document.getElementById("issCancelBtn");
-  if(b1) b1.disabled=false; if(b2) b2.disabled=true;
-}
-
-async function issLoad(){
-  const sid=localStorage.getItem("sms_sessionId")||""; const jobslip=document.getElementById("issJobslip").value.trim();
-  if(!sid){ dlgOpen({title:"Not Logged In", msg:"Login required.", icon:"fa-lock"}); return; }
-  if(!/^\d+$/.test(jobslip)){ dlgOpen({title:"Invalid Jobslip", msg:"Jobslip must be numeric.", icon:"fa-triangle-exclamation"}); return; }
-  showLoading(); document.getElementById("issStatus").innerHTML=`<span class="spinner"></span> Loading issuance...`; document.getElementById("issRenderZone").innerHTML=""; ISS_CACHE=null;
-  try {
-    const res = await callBackend("api_stmsIssuance_load", { sessionId: sid, jobslip });
-    hideLoading();
-    if(!res||!res.ok){ ISS_CACHE=null; document.getElementById("issStatus").innerHTML=`<span class="pill red">Error</span>`; dlgOpen({title:"Load Failed", msg:res?.error||"Failed to load issuance data.", icon:"fa-triangle-exclamation"}); return; }
-    ISS_CACHE=res; const meta=res.meta||{}; const allocId=meta.allocationId || res.allocationId || res.data?.allocationId || "-"; const alreadyIssued=!!meta.alreadyIssued;
-    const statusTxt = alreadyIssued ? `✅ Jobslip ${meta.jobslip} AllocationID=${allocId} already issued. Only Cancel allowed.` : `✅ Loaded AllocationID=${allocId}. Enter Extra Trims and Submit Issuance.`;
-    document.getElementById("issStatus").innerHTML = alreadyIssued ? `<span class="pill green">Loaded Allocation ID: ${allocId}</span> <span class="pill yellow">✅ Already ISSUED (Cancel only)</span><div class="tiny" style="margin-top:6px;">${statusTxt}</div>` : `<span class="pill green">Loaded Allocation ID: ${allocId}</span><div class="tiny" style="margin-top:6px;">${statusTxt}</div>`;
-    document.getElementById("issRenderZone").innerHTML=issRenderHtml(res);
-    const btnSubmit=document.getElementById("issSubmitBtn"); const btnCancel=document.getElementById("issCancelBtn");
-    if(btnSubmit) btnSubmit.disabled = alreadyIssued; if(btnCancel) btnCancel.disabled = !alreadyIssued;
-    issRefreshSpecialPanel(); toast("Issuance loaded","ok","STMS");
-  } catch(err) { hideLoading(); ISS_CACHE=null; document.getElementById("issStatus").innerHTML=`<span class="pill red">Error</span>`; dlgOpen({title:"System Error", msg:err.message||"Unknown error", icon:"fa-triangle-exclamation"}); }
-}
-
-function issRenderHtml(res){
-  const meta=res.meta||{}; const lines=res.lines||[]; const allocId=meta.allocationId || res.allocationId || res.data?.allocationId || "-"; const alreadyIssued=!!meta.alreadyIssued;
-  if(!lines.length) return `<div class="tiny">❌ No issuable lines found (all NA variants?).</div>`;
-  let html=`<div class="block"><div class="block-head"><div><div class="block-title">Jobslip: ${meta.jobslip||"-"} | Allocation ID: ${allocId}</div><div class="block-sub">Karigar: ${meta.karigar||"-"} | Piece: ${meta.piece||"-"}</div><div class="tiny muted" style="margin-top:6px;">✅ Extra trims allowed upto <b>100%</b> of allocated qty. Issue Qty auto = Allocated + Extra.</div></div><div class="pill yellow"><i class="fas fa-clipboard-list"></i> ${lines.length} lines</div></div></div><div style="overflow-x:auto;"><table id="issTable"><thead><tr><th>Design+Color</th><th>Mapped Stock Category</th><th>Variant</th><th>Size</th><th>Allocated Qty</th><th>Extra Trims (<=100%)</th><th>Issue Qty (Auto)</th><th>Stock Balance Now</th><th>Stock After Issue</th><th>Remark</th><th>Challan No (Optional)</th></tr></thead><tbody>`;
-  lines.forEach((ln,i)=>{
-    const extraId=`iss_extra_${i}`; const issueId=`iss_issue_${i}`; const remarkId=`iss_rem_${i}`; const challanId=`iss_ch_${i}`;
-    const allocQty=Number(ln.allocQty||0); const maxExtra=allocQty; const extra=Number(ln.extra||0); const issueQty=Number(ln.issueQty||allocQty);
-    const stockNow=(ln.stockNow===null||ln.stockNow===undefined)?"-":ln.stockNow; const stockAfter=(ln.stockAfter===null||ln.stockAfter===undefined)?"-":ln.stockAfter; const neg = (Number(stockAfter) < 0);
-    html += `<tr><td>${ln.designColor||"-"}</td><td>${ln.stockCat||ln.category||"-"}</td><td>${ln.variant||"-"}</td><td>${ln.size||"NA"}</td><td><span class="pill yellow" style="border:none;background:#fef3c7;">${allocQty}</span></td><td><input class="td-input" id="${extraId}" type="number" step="1" min="0" max="${maxExtra}" value="${extra}" ${alreadyIssued ? "disabled" : ""} oninput="issRecalc(${i})" /><div class="tiny muted">0 to ${maxExtra}</div></td><td><input class="td-input" id="${issueId}" type="number" step="1" value="${issueQty}" disabled /></td><td><span class="pill">${stockNow}</span></td><td><span class="pill ${neg ? "red" : ""}" style="${neg ? "font-weight:900;" : ""}">${stockAfter}</span></td><td><input id="${remarkId}" value="${String(ln.remark||"").replace(/"/g,'&quot;')}" ${alreadyIssued ? "disabled" : ""} /></td><td><input id="${challanId}" value="${String(ln.challan||"").replace(/"/g,'&quot;')}" ${alreadyIssued ? "disabled" : ""} /></td></tr>`;
-  });
-  html += `</tbody></table></div>${issRenderSpecialPanel(res)}`;
-  return html;
-}
-
-function issRecalc(i){
-  try{
-    if(!ISS_CACHE || !ISS_CACHE.ok) return;
-    const lines=ISS_CACHE.lines||[]; const ln=lines[i]; if(!ln) return;
-    const allocQty=Number(ln.allocQty||0); const extraEl=document.getElementById(`iss_extra_${i}`); const issueEl=document.getElementById(`iss_issue_${i}`);
-    let extra=Number(extraEl?.value); if(isNaN(extra)) extra=0; if(extra < 0) extra=0; if(extra > allocQty) extra=allocQty; if(extraEl) extraEl.value=extra;
-    const issueQty=allocQty + extra; if(issueEl) issueEl.value=issueQty;
-    const stockNow=Number(ln.stockNow||0); const stockAfter = stockNow - issueQty;
-    ln.extra=extra; ln.issueQty=issueQty; ln.stockAfter=stockAfter;
-    const tbody=document.querySelector("#issTable tbody"); if(!tbody) return; const tr=tbody.querySelectorAll("tr")[i]; if(!tr) return;
-    const tdStockAfter=tr.children[8]; if(tdStockAfter){ const neg = stockAfter < 0; tdStockAfter.innerHTML = `<span class="pill ${neg ? "red" : ""}" style="${neg ? "font-weight:900;" : ""}">${stockAfter}</span>`; }
-  }catch(e){ console.error(e); }
-}
-
-function issRenderSpecialPanel(res){
-  const special=res.special||{}; const items=special.items||[]; const currentCode=(document.getElementById("issSpecialCode")?.value||"").trim(); const unlocked = (currentCode === SPECIAL_EXTRA_CODE); const ROWS=12;
-  let html=`<div class="block" style="margin-top:16px;"><div class="block-head"><div><div class="block-title">✅ SPECIAL EXTRA ISSUANCE (Additional Items OUT)</div><div class="block-sub">Authorization required to unlock.</div></div><div class="pill ${unlocked ? "green" : "red"}">${unlocked ? "UNLOCKED" : "LOCKED"}</div></div><div class="tiny">✅ Special Extra Issuance available (admin authorization required).</div></div><div style="overflow-x:auto;"><table id="issSpecialTable"><thead><tr><th>Special Item (Category || Variant || Size)</th><th>Qty OUT</th><th>Stock Balance Now</th></tr></thead><tbody>`;
-  for(let i=0;i<ROWS;i++){ const itemId=`iss_sp_item_${i}`; const qtyId=`iss_sp_qty_${i}`; const balId=`iss_sp_bal_${i}`; html += `<tr><td><select id="${itemId}" class="td-input" ${unlocked ? "" : "disabled"} onchange="issSpecialBalance(${i})"><option value="" selected>Select item</option>${items.map(x=>`<option value="${String(x).replace(/"/g,'&quot;')}">${x}</option>`).join("")}</select></td><td><input id="${qtyId}" class="td-input" type="number" step="1" value="" ${unlocked ? "" : "disabled"} /></td><td><span id="${balId}" class="pill">-</span></td></tr>`; }
-  return html+`</tbody></table></div>`;
-}
-
-function issRefreshSpecialPanel(){
-  if(!ISS_CACHE || !ISS_CACHE.ok) return;
-  try{ const zone=document.getElementById("issRenderZone"); if(!zone) return; zone.innerHTML = issRenderHtml(ISS_CACHE); const alreadyIssued = !!(ISS_CACHE.meta||{}).alreadyIssued; const btnSubmit=document.getElementById("issSubmitBtn"); const btnCancel=document.getElementById("issCancelBtn"); if(btnSubmit) btnSubmit.disabled = alreadyIssued; if(btnCancel) btnCancel.disabled = !alreadyIssued; }catch(e){}
-}
-function issSpecialBalance(i){ const balEl=document.getElementById(`iss_sp_bal_${i}`); if(balEl) balEl.textContent="—"; }
-
-async function issSubmit(){
-  if(!ISS_CACHE || !ISS_CACHE.ok || !ISS_CACHE.meta){ dlgOpen({title:"Issuance Required", msg:"Load issuance first.", icon:"fa-circle-exclamation"}); return; }
-  const meta=ISS_CACHE.meta||{}; if(!!meta.alreadyIssued){ dlgOpen({title:"Already Issued", msg:"✅ Already ISSUED. Only Cancel allowed.", icon:"fa-lock"}); return; }
-  const sid=localStorage.getItem("sms_sessionId")||""; if(!sid){ dlgOpen({title:"Not Logged In", msg:"Login required.", icon:"fa-lock"}); return; }
-  const jobslip=meta.jobslip; const specialCode=(document.getElementById("issSpecialCode")?.value||"").trim();
-  const lines=ISS_CACHE.lines||[]; const out=[];
-  for(let i=0;i<lines.length;i++){
-    const extraRaw = document.getElementById(`iss_extra_${i}`)?.value; const extra = Number(extraRaw);
-    if(extraRaw === "" || extraRaw === null || isNaN(extra)){ dlgOpen({title:"Incomplete Issuance", msg:`Extra Trims missing at line ${i+1}`, icon:"fa-triangle-exclamation"}); return; }
-    const remark=(document.getElementById(`iss_rem_${i}`)?.value||"").trim(); const challan=(document.getElementById(`iss_ch_${i}`)?.value||"").trim();
-    out.push({ designColor: lines[i].designColor, stockCat: lines[i].stockCat, variant: lines[i].variant, size: lines[i].size, allocQty: Number(lines[i].allocQty||0), extra: Number(extra)||0, remark, challan });
-  }
-  const specialLines=[]; if(specialCode === SPECIAL_EXTRA_CODE){
-    for(let i=0;i<12;i++){ const item=(document.getElementById(`iss_sp_item_${i}`)?.value||"").trim(); const qty=Number(document.getElementById(`iss_sp_qty_${i}`)?.value)||0; if(!item && !qty) continue; if(!item){ dlgOpen({title:"Special Extra Issuance", msg:`Select item in Special row ${i+1}`, icon:"fa-triangle-exclamation"}); return; } if(!qty || qty<=0){ dlgOpen({title:"Special Extra Issuance", msg:`Qty OUT must be > 0 in Special row ${i+1}`, icon:"fa-triangle-exclamation"}); return; } specialLines.push({item, qty}); }
-  }
-  dlgConfirm("Submit Issuance (OUT)?\nThis will write into STMS Issuance Ledger and STOCK OUT entries.", ()=>{ acquireLock("ISSUANCE_SUBMIT", async ()=>{ showLoading(); toast("Submitting issuance…","warn","STMS"); try { const res = await callBackend("api_stmsIssuance_submit", { sessionId: sid, jobslip, mode:"ISSUE", lines: out, specialCode, specialLines }); releaseLock(); hideLoading(); if(!res || !res.ok){ dlgOpen({title:"Submit Failed", msg:res?.error||"Submit failed", icon:"fa-triangle-exclamation"}); return; } dlgOpen({ title:"Issuance Completed", msg:`✅ Issuance Completed - Jobslip=${jobslip} AllocationID=${meta.allocationId||"-"} Lines=${res.linesIssued||res.data?.linesIssued||"-"}`, icon:"fa-circle-check" }); issLoad(); } catch(err){ releaseLock(); hideLoading(); dlgOpen({title:"System Error", msg:err.message||"Unknown error", icon:"fa-triangle-exclamation"}); } }); });
-}
-
-async function issCancel(){
-  if(!ISS_CACHE || !ISS_CACHE.ok || !ISS_CACHE.meta){ dlgOpen({title:"Issuance Required", msg:"Load issuance first.", icon:"fa-circle-exclamation"}); return; }
-  const meta=ISS_CACHE.meta||{}; if(!meta.alreadyIssued){ dlgOpen({title:"Not Issued Yet", msg:"❌ Not issued yet. Cannot cancel.", icon:"fa-triangle-exclamation"}); return; }
-  const sid=localStorage.getItem("sms_sessionId")||""; if(!sid){ dlgOpen({title:"Not Logged In", msg:"Login required.", icon:"fa-lock"}); return; }
-  const jobslip=meta.jobslip;
-  dlgConfirm(`⚠️ CANCEL ISSUANCE (IN)\nThis will REVERT stock back for Jobslip ${jobslip} AllocationID ${meta.allocationId||"-"}.\n\nDo you want to continue?`, ()=>{ acquireLock("ISSUANCE_CANCEL", async ()=>{ showLoading(); toast("Cancelling issuance…","warn","STMS"); try { const res = await callBackend("api_stmsIssuance_submit", { sessionId: sid, jobslip, mode:"CANCEL" }); releaseLock(); hideLoading(); if(!res || !res.ok){ dlgOpen({title:"Cancel Failed", msg:res?.error||"Cancellation failed", icon:"fa-triangle-exclamation"}); return; } dlgOpen({ title:"Issuance Cancelled", msg:`✅ Issuance Cancelled - Jobslip=${jobslip} AllocationID=${meta.allocationId||"-"} Lines=${res.linesCancelled||res.data?.linesCancelled||"-"}\nReissue allowed now.`, icon:"fa-circle-check" }); issLoad(); } catch(err){ releaseLock(); hideLoading(); dlgOpen({title:"System Error", msg:err.message||"Unknown error", icon:"fa-triangle-exclamation"}); } }); });
-}
-
-function openChallan(){
-  const body=`<div class="grid cols2"><div class="field"><label>Enter Jobslip No (Numeric only)</label><input id="chlJobslip" placeholder="e.g. 1699" /></div><div class="field"><label>OR Search Tagged Challan No</label><input id="chlSearchChallan" placeholder="e.g. CH-00123" /></div></div><div class="grid cols2" style="margin-top:12px;"><div class="field"><label>Status</label><input id="chlStatusInput" disabled value="✅ Challan Tagging UI ready." /></div><div class="field"><label>Search in Tagged Lines</label><input id="chlTaggedSearch" placeholder="Type to filter tagged lines..." oninput="chlFilterTagged()" disabled /></div></div><div class="grid cols2" style="margin-top:12px;"><div class="field"><label>Challan No</label><input id="chlNo" placeholder="e.g. CH-00123" /></div><div class="field"><label>Challan Date</label><input id="chlDate" type="date" /></div></div><div class="grid cols2" style="margin-top:12px;"><div class="field"><label>Transporter</label><input id="chlTransport" placeholder="Transporter name / LR / Courier" /></div><div class="field"><label>Remark</label><input id="chlRemark" placeholder="Optional remark (applies when line remark blank)" /></div></div><div class="action-row" style="margin-top:12px;"><button class="action-btn action-dark" onclick="chlLoad()"><i class="fas fa-download"></i> Load</button><button class="action-btn action-green" onclick="chlSubmit()"><i class="fas fa-paper-plane"></i> Submit Challan Tagging</button></div><div id="chlStatus" class="tiny" style="margin-top:10px;"></div><div id="chlRenderZone"></div>`;
-  const actions=`<button class="btn dark" onclick="closeModal()"><i class="fas fa-xmark"></i> Close</button>`;
-  openModal(`<i class="fas fa-truck"></i> STMS Challan Tagging UI (Web)`, body, actions);
-  try{ const d=new Date(); document.getElementById("chlDate").value = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`; }catch(e){}
-}
-
-async function chlLoad(){
-  const sid=localStorage.getItem("sms_sessionId")||""; const jobslip=(document.getElementById("chlJobslip").value||"").trim(); const challanNo=(document.getElementById("chlSearchChallan").value||"").trim();
-  if(!sid){ dlgOpen({title:"Not Logged In",msg:"Please login first.",icon:"fa-lock"}); return; }
-  if(!jobslip && !challanNo){ dlgOpen({title:"Missing",msg:"Enter Jobslip OR Challan No.",icon:"fa-circle-exclamation"}); return; }
-  if(jobslip && !/^\d+$/.test(jobslip)){ dlgOpen({title:"Invalid Jobslip",msg:"Jobslip must be numeric.",icon:"fa-triangle-exclamation"}); return; }
-  try{ const s=document.getElementById("chlTaggedSearch"); if(s){ s.value=""; s.disabled=true; } }catch(e){}
-  lockStatus(async (x)=>{ if(x.locked){ document.getElementById("chlStatusInput").value="🔒 LOCKED"; document.getElementById("chlStatus").innerHTML=`<span class="pill red">SYSTEM LOCKED</span>`; document.getElementById("chlRenderZone").innerHTML=""; return; } chlLoad_Internal(sid, jobslip, challanNo); });
-}
-
-async function chlLoad_Internal(sid, jobslip, challanNo){
-  CHL_CACHE=null; document.getElementById("chlStatusInput").value="Loading…"; document.getElementById("chlStatus").innerHTML=`<span class="spinner"></span> Loading challan tagging…`; document.getElementById("chlRenderZone").innerHTML=""; showLoading();
-  try {
-    const res = await callBackend("challan_load", { sessionId: sid, jobslip, challanNo });
-    hideLoading();
-    if(!res){ document.getElementById("chlStatusInput").value="Error"; dlgOpen({title:"Load Failed",msg:"Empty response from backend.",icon:"fa-triangle-exclamation"}); return; }
-    if(res.ok===false){ document.getElementById("chlStatusInput").value="Error"; dlgOpen({title:"Load Failed",msg:res.error||"Failed",icon:"fa-triangle-exclamation"}); return; }
-    CHL_CACHE=res; const meta=res.meta||{};
-    if(meta.locked){ document.getElementById("chlStatusInput").value="🔒 LOCKED"; document.getElementById("chlStatus").innerHTML=`<span class="pill red">TAGGED / LOCKED</span><span class="tiny">Challan=${meta.challanNo||"-"} | AllocID=${meta.allocationId||"-"}</span>`; let html = `<div class="block"><div class="block-title">Jobslip ${meta.jobslip||"-"} | Alloc ${meta.allocationId||"-"}</div><div class="tiny">${meta.lockReason||meta.reason||"Locked"}</div></div>`; if(res.lines && res.lines.length){ html += chlRenderTaggedTable(res); try{ const s=document.getElementById("chlTaggedSearch"); if(s){ s.disabled=false; } }catch(e){} } document.getElementById("chlRenderZone").innerHTML = html; return; }
-    document.getElementById("chlStatusInput").value="✅ Loaded"; document.getElementById("chlStatus").innerHTML=`<span class="pill green">Loaded</span><span class="tiny">AllocID=${meta.allocationId||"-"} | Batch=${chlFmtTS(meta.issueBatchTS)}</span>`; document.getElementById("chlRenderZone").innerHTML=chlRenderHtml(res);
-  } catch(err) { hideLoading(); document.getElementById("chlStatusInput").value="Error"; dlgOpen({ title:"Backend Error", msg:(err && err.message) ? err.message : String(err||"Backend failure"), icon:"fa-triangle-exclamation" }); }
-}
-function chlFmtTS(ts){ if(!ts) return "-"; if(ts instanceof Date && !isNaN(ts)) return ts.toLocaleString(); const d=new Date(ts); return isNaN(d)?String(ts):d.toLocaleString(); }
-function chlRenderTaggedTable(res){ const meta=res.meta||{}; const lines=res.lines||[]; if(!lines.length) return `<div class="tiny">No challan lines found.</div>`; let h=`<div class="block" style="margin-top:14px;"><div class="block-head"><div><div class="block-title">✅ TAGGED CHALLAN: ${meta.challanNo||"-"}</div><div class="block-sub">Date: ${meta.challanDate||"-"} | Transporter: ${meta.transporter||"-"}</div></div><span class="pill red"><i class="fas fa-lock"></i> READ ONLY</span></div><div class="tiny">Use search box above to filter tagged lines.</div></div><div style="overflow-x:auto;"><table id="chlTaggedTable"><thead><tr><th>Design</th><th>Category</th><th>Variant</th><th>Size</th><th>Issued</th><th>Tagged</th><th>Remark</th></tr></thead><tbody>`; lines.forEach((ln,i)=>{ h+=`<tr><td>${ln.designColor||""}</td><td>${ln.stockCat||""}</td><td>${ln.variant||""}</td><td>${ln.size||"NA"}</td><td>${Number(ln.issuedQty)||0}</td><td>${(ln.tagQty===undefined||ln.tagQty===null)?(Number(ln.issuedQty)||0):Number(ln.tagQty)||0}</td><td>${ln.remark||""}</td></tr>`; }); return h+`</tbody></table></div>`; }
-function chlFilterTagged(){ try{ const q=(document.getElementById("chlTaggedSearch")?.value||"").toLowerCase(); const rows=document.querySelectorAll("#chlTaggedTable tbody tr"); rows.forEach(tr=>{ const txt=(tr.innerText||"").toLowerCase(); tr.style.display=(!q || txt.includes(q)) ? "" : "none"; }); }catch(e){} }
-function chlRenderHtml(res){ const lines=res.lines||[]; if(!lines.length) return `<div class="tiny">No issuance found.</div>`; let h=`<table><thead><tr><th>Select</th><th>Design</th><th>Category</th><th>Variant</th><th>Size</th><th>Issued</th><th>Tag Qty</th><th>Bal</th><th>Remark</th></tr></thead><tbody>`; lines.forEach((ln,i)=>{ const issued=Number(ln.issuedQty)||0; h+=`<tr><td><input type="checkbox" id="chl_chk_${i}" checked></td><td>${ln.designColor||""}</td><td>${ln.stockCat||""}</td><td>${ln.variant||""}</td><td>${ln.size||"NA"}</td><td>${issued}</td><td><input id="chl_qty_${i}" value="${issued}" onchange="chlRecalcRow(${i})"></td><td id="chl_bal_${i}">0</td><td><input id="chl_rm_${i}"></td></tr>`; }); return h+`</tbody></table>`; }
-function chlRecalcRow(i){ const ln=CHL_CACHE.lines[i]; const issued=Number(ln.issuedQty)||0; const inp=document.getElementById(`chl_qty_${i}`); let v=Math.min(Math.max(Number(inp.value)||0,0),issued); inp.value=v; document.getElementById(`chl_bal_${i}`).innerText=issued-v; }
-async function chlSubmit(){ if(!CHL_CACHE||!CHL_CACHE.ok){ dlgOpen({title:"Load Required",msg:"Load jobslip first.",icon:"fa-circle-exclamation"}); return; } const meta=CHL_CACHE.meta||{}; if(meta.locked){ dlgOpen({title:"LOCKED",msg:meta.lockReason||meta.reason,icon:"fa-lock"}); return; } const challanNo=document.getElementById("chlNo").value.trim(); const challanDate=document.getElementById("chlDate").value; const transporter=document.getElementById("chlTransport").value.trim(); const remark=document.getElementById("chlRemark").value.trim(); if(!challanNo||!challanDate){ dlgOpen({title:"Missing",msg:"Challan No & Date required.",icon:"fa-circle-exclamation"}); return; } const selected=[]; (CHL_CACHE.lines||[]).forEach((ln,i)=>{ if(!document.getElementById(`chl_chk_${i}`)?.checked) return; selected.push({ designColor:ln.designColor, stockCat:ln.stockCat, variant:ln.variant, size:ln.size, issuedQty:ln.issuedQty, tagQty:Number(document.getElementById(`chl_qty_${i}`)?.value)||0, remark:(document.getElementById(`chl_rm_${i}`)?.value||"") }); }); acquireLock("CHALLAN_SUBMIT", async ()=>{ showLoading(); try { const res = await callBackend("challan_submit", { sessionId:localStorage.getItem("sms_sessionId"), jobslip:meta.jobslip, challanNo, challanDate, transporter, remark, lines:selected }); releaseLock(); hideLoading(); if(!res||!res.ok){ dlgOpen({title:"Submit Failed",msg:res?.error||"Failed",icon:"fa-triangle-exclamation"}); return; } dlgOpen({title:"Success",msg:`Challan ${res.challanNo} tagged`,icon:"fa-circle-check"}); chlLoad(); } catch(err){ releaseLock(); hideLoading(); dlgOpen({ title:"Backend Error", msg:(err && err.message) ? err.message : String(err||"Backend failure"), icon:"fa-triangle-exclamation" }); } }); }
+drawMatrix();
 </script>
+
 </body>
 </html>
